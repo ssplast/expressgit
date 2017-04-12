@@ -8,14 +8,6 @@ npm
 *.bat
 *.zip
 *.rar
-server/node_modules/
-server/.idea/
-server/*.log
-server/*.rar
-server/*.zip
-server/.exe
-server/.cmd
-server/.bat
 
 # git remote add origin https://github.com/ssplast/servertwo.git
 # git push -u origin master
