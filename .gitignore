@@ -1,47 +1,36 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+.idea/
+node_modules/
+npm
+*.log
+*.man
+*.exe
+*.cmd
+*.bat
+*.zip
+*.rar
+server/node_modules/
+server/.idea/
+server/*.log
+server/*.rar
+server/*.zip
+server/.exe
+server/.cmd
+server/.bat
 
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# git remote add origin https://github.com/ssplast/servertwo.git
+# git push -u origin master
+# git remote add origin https://github.com/ssplast/server.git
+# git push -u origin master
+# git rm --cached ��� �����    //������ �� 
+# git add .
+# git status
+# git status --untracked-files=all
+# git log
+# git help log
+# git commit -a -m "init"
+# cd server
+# git config --list
+# git config --global user.login "ssplast"
+# git config --global user.email "ssplast@i.ua"
+# git init
+# git commit -m "first commit"
