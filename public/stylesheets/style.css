@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    cursor: default;
+}
+body, html{
+    background: rgba(0, 0, 0, 0.05);
+}
+#window {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#window .conteiner{
+    display: flex;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+#window #head{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0 0 0.1rem 0;
+    flex-wrap: wrap;
+}
+#window #head #time{
+    display: flex;
+}
+#window #head #time > div{
+    margin: auto 3px;
+}
+#window #middle{
+    display: flex;
+    height: 90vh;
+    justify-content: space-between;
+}
+#window #footer{
+    height: 4vh;
+    display: flex;
+}
+.button{
+    user-select: none;
+    border: 1px solid rgba(140,140,140,1);
+    display: inline-block;
+    transition: all 100ms;
+    box-shadow:
+            2px 1px rgb(85, 85, 85), 2px 2px rgb(85, 85, 85);
+    background-image: -webkit-linear-gradient(top, rgba(240,240,240,1), rgba(230,230,230,1), rgba(190,190,190,1));
+    white-space: nowrap;
+    margin: 2px;
+}
+.button .wrapper_flex{
+    display:flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: row;
+}
+.button .wrapper_flex .icon, .button .wrapper_flex .list{
+    background-image: -webkit-linear-gradient(top, rgba(220,220,220,1), rgba(200,200,200,1), rgba(170,170,170,1));
+    padding: 0.1rem 0.4rem 0;
+    border: transparent;
+}
+.button .wrapper_flex .list_conteiner{
+    margin-top: 1.3rem;
+    position: absolute;
+    display: none;
+    color: rgba(0,0,0,1);
+    margin-left: -3px;
+}
+.button .wrapper_flex .icon{
+    transition: all 100ms;
+}
+.button .wrapper_flex  i{
+    transition: all 200ms;
+}
+.button .wrapper_flex .text{
+    transition: all 100ms;
+    padding: 0 0.4rem;
+}
+.button:hover{
+    color: #0058ff;
+}
+.button:hover .wrapper_flex .list_conteiner{
+    display: flex;
+    flex-direction: column;
+}
+.button:hover .wrapper_flex > .list > .fa-chevron-right {
+    transform: rotate(90deg);
+}
+.nobutton:active{
+    box-shadow:
+            0px 0px rgb(85, 85, 85), 0px 0px rgb(85, 85, 85);
+    transform: translateX(2px) translateY(2px);
+}

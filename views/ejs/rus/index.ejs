@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf8">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/locale/ru.js"></script>
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .f{
+            display: flex;
+            justify-items: center;
+            align-content: center;
+            align-items: center;
+            font-size: 1em;
+            padding: 1px;
+            flex-wrap: wrap;
+        }
+        .fc{
+            justify-content: center;
+        }
+        .fw{
+            justify-content: space-between;
+        }
+        .fa{
+            justify-content: space-around;
+        }
+        .bord{
+            border: 1px solid black;
+            margin: 2px;
+            font-size: 24px;
+        }
+        .pad{
+            padding: 10px;
+        }
+        #date_now,
+        #day_now,
+        #month_now,
+        #time_now,
+        #curr_head,
+        #curr_Ask,
+        #curr_Bid,
+        #curr_head_pb,
+        #curr_pb_sell,
+        #curr_pb_buy,
+        #curr_head_nbu,
+        #curr_nbu_sell,
+        #curr_nbu_buy
+        {
+            font-size: 24px;
+        }
+        #date_now{
+            font-size: 48px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div class="f fa">
+    <div>
+        <div id="month_now" class="f fc"></div>
+        <div id="date_now" class="f fc"></div>
+        <div id="day_now" class="f fc"></div>
+        <div id="time_now" class="f fc"></div>
+    </div>
+    <div>
+        <div id="curr_head_pb" class="f fc">ПриватБанк</div>
+        <div id="curr_pb_sell" class="f fc"></div>
+        <div id="curr_pb_buy" class="f fc"></div>
+    </div>
+    <div>
+        <div id="curr_head_nbu" class="f fc">НБУ</div>
+        <div id="curr_nbu_sell" class="f fc"></div>
+        <div id="curr_nbu_buy" class="f fc"></div>
+    </div>
+    <div>
+        <div id="curr_head" class="f fc">yahoo.com</div>
+        <div id="curr_Ask" class="f fc"></div>
+        <div id="curr_Bid" class="f fc"></div>
+    </div>
+</div>
+<div class="f fw">
+    <div class="bord">
+        <div class="f fc bord">
+            <div>серёга</div>
+        </div>
+        <div id="serega" class="bord pad"></div>
+    </div>
+    <div class="bord">
+        <div class="f fc bord">
+            <div>женя дырка</div>
+        </div>
+        <div id="2" class="bord pad"></div>
+    </div>
+    <div class="bord">
+        <div class="f fc bord">
+            <div>болт</div>
+        </div>
+        <div id="3" class="bord pad"></div>
+    </div>
+    <div class="bord">
+        <div class="f fc bord">
+            <div>молодой</div>
+        </div>
+        <div id="4" class="bord pad"></div>
+    </div>
+</div>
+</body>
+<script>
+    var x = new XMLHttpRequest();
+    x.open("GET", "https://query.yahooapis.com/v1/public/yql?q=select+*+from+yahoo.finance.xchange+where+pair+=+%22USDUAH,EURUAH,RUBUAH,USDRUB%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=", true);
+    x.onload = function (){
+        var obj = JSON.parse(x.responseText).query.results.rate;
+        $('#curr_Ask').html(obj[2].Ask);
+        $('#curr_Bid').html(obj[2].Bid);
+    };
+    x.send(null);
+    var pb = new XMLHttpRequest();
+    pb.open("GET", "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5", true);
+    pb.onload = function (){
+        var obj = JSON.parse(pb.responseText);
+        $('#curr_pb_buy').html(obj[1].buy);
+        $('#curr_pb_sell').html(obj[1].sale);
+    };
+    pb.send(null);
+    var nbu = new XMLHttpRequest();
+    nbu.open("GET", "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3", true);
+    nbu.onload = function (){
+        var obj = JSON.parse(nbu.responseText);
+        $('#curr_nbu_buy').html(obj[1].buy);
+        $('#curr_nbu_sell').html(obj[1].sale);
+    };
+    nbu.send(null);
+    $('#month_now').html(moment().format("MMMM"));
+    $('#date_now').html(moment().format("DD"));
+    $('#day_now').html(moment().format("dddd"));
+    setInterval(function () {
+        $('#time_now').html(moment().format('HH:mm:ss'));
+    }, 1000);
+    var next = start_day = moment(moment("2016 08 05", "YYYY MM DD"));//.add(8, 'hours');
+    while(moment() > moment(next)){
+        next = moment(next).add(96, 'hours');
+    }
+    next = moment(next).subtract(96 * 2, 'hours');
+    var i = 5;
+    var next_style =
+        next2_style =
+        next3_style =
+        next4_style =
+        next_style_n =
+        next2_style_n =
+        next3_style_n =
+        next4_style_n = ' style="background-color: silver;"';
+    while(i){
+        next = moment(next).add(96, 'hours');
+        next2 = moment(next).add(24, 'hours');
+        next3 = moment(next).add(48, 'hours');
+        next4 = moment(next).add(72, 'hours');
+        if(moment().isBefore(next)){next_style = ''}
+        if(moment().isBefore(next2)){next2_style = ''}
+        if(moment().isBefore(next3)){next3_style = ''}
+        if(moment().isBefore(next4)){next4_style = ''}
+        $('#serega').append('<div ' + next_style + '>' + moment(next).format("YYYY.MM.DD") + ' день ' + moment(next).format("dddd") + '</div>');
+        $('#serega').append('<div>' + moment(next).add(24, "hours").format("YYYY.MM.DD") + ' ночь ' + moment(next).add(24, "hours").format("dddd") + '</div>');
+        $('#2').append('<div ' + next2_style + '>' + moment(next2).format("YYYY.MM.DD") + ' день ' + moment(next2).format("dddd") + '</div>');
+        $('#2').append('<div>' + moment(next2).add(24, "hours").format("YYYY.MM.DD") + ' ночь ' + moment(next2).add(24, "hours").format("dddd") + '</div>');
+        $('#3').append('<div ' + next3_style + '>' + moment(next3).format("YYYY.MM.DD") + ' день ' + moment(next3).format("dddd") + '</div>');
+        $('#3').append('<div>' + moment(next3).add(24, "hours").format("YYYY.MM.DD") + ' ночь ' + moment(next3).add(24, "hours").format("dddd") + '</div>');
+        $('#4').append('<div ' + next4_style + '>' + moment(next4).format("YYYY.MM.DD") + ' день ' + moment(next4).format("dddd") + '</div>');
+        $('#4').append('<div>' + moment(next4).add(24, "hours").format("YYYY.MM.DD") + ' ночь ' + moment(next4).add(24, "hours").format("dddd") + '</div>');
+        i--;
+    }
+</script>
+</html>

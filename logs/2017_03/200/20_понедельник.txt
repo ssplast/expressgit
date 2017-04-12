@@ -1,0 +1,2 @@
+00:09:32 956ms GET 200 1 /
+00:09:33 014ms GET 200 1 /stylesheets/style.css

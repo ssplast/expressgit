@@ -1,0 +1,21 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "debug": "~0.7.4",
+    "express": "~4.0.0",
+    "express-session": "latest",
+    "express-logger": "latest",
+    "morgan": "latest",
+    "pug": "latest",
+    "serve-favicon": "latest",
+    "compression": "latest",
+    "socket.io": "latest"
+  }
+}

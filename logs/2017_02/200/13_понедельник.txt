@@ -1,0 +1,11 @@
+18:13:26 591ms GET 200 1 /bugaltery/
+18:13:26 716ms GET 200 1 /bugaltery/js/time.js
+18:13:26 722ms GET 200 1 /fontawesome/css/font-awesome.min.css
+18:13:26 726ms GET 200 1 /stylesheets/style.css
+18:13:26 736ms GET 200 1 /js/ru.js
+18:13:26 759ms GET 200 1 /js/jquery.js
+18:13:26 777ms GET 200 1 /js/moment.js
+18:13:26 845ms GET 200 1 /fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0
+18:15:46 855ms GET 200 1 /bugaltery/
+18:27:15 188ms GET 200 1 /bugaltery/
+18:55:20 801ms GET 200 1 /bugaltery/

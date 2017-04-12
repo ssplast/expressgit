@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/bottons.css">
+    <script src="/js/moment.js"></script>
+    <script src="/js/moment_ru.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/botton_animate.js"></script>
+    <link rel="stylesheet" href="/fontawesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto:500" rel="stylesheet">
+    <title><%= title%></title>
+</head>
+<style>
+    .btn{
+        color: rgba(100, 100, 100, 1);
+        border: none;
+        border-color: transparent;
+        background-image: none;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+        cursor: pointer;
+        margin: 2px 1px 4px;
+        border-radius: 0.15rem;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        display: inline-block;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        transition: all 0.2s ease-in-out;
+        background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(245,245,245,1), rgba(235,235,235,1));
+
+    }
+    .btn:hover{
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.16), 0 2px 2px rgba(0,0,0,0.23);
+    }
+    .btn:active{
+        transition: all 0.1s ease-in-out;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 1px 2px rgba(0,0,0,0.23);
+    }
+    .btn *{
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn > div{
+        margin: 3px 5px;
+    }
+    .btn-green{
+        background: linear-gradient(to bottom, rgba(255,255,255,1), rgb(200, 255, 200), rgb(150, 255, 150));
+    }
+    .btn-red{
+        background: linear-gradient(to bottom, rgba(255,255,255,1), rgb(255, 200, 200), rgb(255, 150, 150));
+    }
+    .btn-blue{
+        background: linear-gradient(to bottom, rgba(255,255,255,1), rgb(200, 200, 255), rgb(150, 150, 255));
+    }
+    .btn-yel{
+        background: linear-gradient(to bottom, rgba(255,255,255,1), rgb(255, 255, 200), rgb(255, 255, 150));
+    }
+    .btn-yel2{
+        background: linear-gradient(to bottom, rgba(255,255,255,1), rgb(255, 200, 255), rgb(255, 150, 255));
+    }
+    .btn-yel3{
+        background: linear-gradient(to bottom, rgba(255,255,255,1), rgb(200, 255, 255), rgb(150, 255, 255));
+    }
+    .btn-link:hover *{
+        color: #37a4ff;
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <div class="btn"><div>Кнопка</div></div>
+    <div class="btn"><div>btn</div></div>
+    <div class="btn btn-link">
+        <div>
+            <a href="http://warp.pp.ua/test" target="_self">
+            <i class="fa fa-link"></i><span> btn-link </span>
+            </a>
+        </div>
+    </div>
+    <div class="btn btn-link">
+        <div>
+            <a href="http://warp.pp.ua/test" target="_blank">
+                <i class="fa fa-external-link"></i><span> btn-external-link </span>
+            </a>
+        </div>
+    </div>
+    <div class="btn btn-close"><div>btn-close</div></div>
+    <div class="btn btn-green"><div>btn-green</div></div>
+    <div class="btn btn-red"><div>btn-red</div></div>
+    <div class="btn btn-blue"><div>btn-red</div></div>
+    <div class="btn btn-yel"><div>btn-yel</div></div>
+    <div class="btn btn-yel2"><div>btn-yel2</div></div>
+    <div class="btn btn-yel3"><div>btn-yel3</div></div>
+    <div>
+        <a href="https://github.com/yagop/node-telegram-bot-api/tree/master/doc" target="_blank">
+            node-telegram-bot-api
+        </a>
+    </div>
+</body>
+</html>
