@@ -64,13 +64,93 @@ io.on('connection', function (socket) {
     });
 });
 
-
-
-var Chimera = require('chimera').Chimera;
-
-
-
-
+var ccc = [{
+    url: 'http://www.obmenka.kh.ua/1',
+    logo: '',
+    USD_UAH: {
+        name: 'USD',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    EUR_UAH: {
+        name: 'EUR',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    RUB_UAH: {
+        name: 'RUB',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    USD_RUB: {
+        name: 'USD-RUB',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    EUR_USD: {
+        name: 'EUR-USD',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    }
+},{
+    url: 'http://www.obmenka.kh.ua/2',
+    logo: '',
+    USD_UAH: {
+        name: 'USD',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    EUR_UAH: {
+        name: 'EUR',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    RUB_UAH: {
+        name: 'RUB',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    USD_RUB: {
+        name: 'USD-RUB',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    },
+    EUR_USD: {
+        name: 'EUR-USD',
+        prevbuy: '',
+        prevsell: '',
+        buy: '',
+        sell: '',
+        way: '▼▲'
+    }
+}];
 var CronJob = require('cron').CronJob;
 var job = new CronJob({
     /*  Seconds: 0-59
@@ -88,12 +168,16 @@ var job = new CronJob({
             if (!error) {
                 $ = cheerio.load(body);
                 console.log('http://www.obmenka.kh.ua/');
-                console.log($('div[class="digits"]').find('div[class="item"]').length);
-                    //.slice(0, 3).each(function (i, elem) {
-                    //console.log($(this).find('li[class="curr-wrap"]').text().trim());
-                //});
+                ccc['http://www.obmenka.kh.ua/']
+                $('div[class="digits"]').find('div[class="item"]').each(function (i, elem) {
+                    console.log($(this).find('span[class="val"]').text().replace(/\//g, '-').toUpperCase());
+                    console.log($(this).find('span[class="buy"]').text());
+                    console.log($(this).find('span[class="sell"]').text());
+                    //console.log($(this).text().trim().replace(/\ /g, '').replace(/\//g, '-').toUpperCase());
+                });
             }
         });
+        /*
         request('https://kharkov.obmenka.ua/', function (error, response, body) {
             if (!error) {// && response && response.statusCode) {
                 $ = cheerio.load(body);
@@ -101,7 +185,7 @@ var job = new CronJob({
                     $(this).find('span[class="currency"]').text().trim();
                     $(this).find('span[class="buy"]').text().trim();
                     $(this).find('span[class="sell"]').text().trim();
-                    console.log($(this).find('span[class="currency"]').text().replace(/\r|\n/g, ''));
+                    console.log($(this).find('span[class="currency"]').text().replace(/\r\n/g, ''));
                     console.log($(this).find('span[class="buy"]').text().replace(/\r|\n/g, ''));
                     console.log($(this).find('span[class="sell"]').text().replace(/\r|\n/g, ''));
                 });
@@ -115,6 +199,7 @@ var job = new CronJob({
                 });
             }
         });
+         */
     },
     start: false,
     timeZone: 'Europe/Kiev'
