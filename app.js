@@ -65,6 +65,12 @@ io.on('connection', function (socket) {
 });
 
 
+
+var Chimera = require('chimera').Chimera;
+
+
+
+
 var CronJob = require('cron').CronJob;
 var job = new CronJob({
     /*  Seconds: 0-59
@@ -73,19 +79,23 @@ var job = new CronJob({
      Day of Month: 1-31
      Months: 0-11
      Day of Week: 0-6    */
+
+    //https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5
     cronTime: '*/5 */1 0-23 1-31 0-11 0-6',
     onTick: function () {
         console.log(moment().format());
-        request('https://obmenka.kharkov.ua/', function (error, response, body) {
-            if (!error && response && response.statusCode) {
+        request('http://www.obmenka.kh.ua/', function (error, response, body) {
+            if (!error) {
                 $ = cheerio.load(body);
-                $('ul[class="currs-grid"]').slice(0, 3).each(function (i, elem) {
-                    console.log($(this).find('li[class="curr-wrap"]').text().trim());
-                });
+                console.log('http://www.obmenka.kh.ua/');
+                console.log($('div[class="digits"]').find('div[class="item"]').length);
+                    //.slice(0, 3).each(function (i, elem) {
+                    //console.log($(this).find('li[class="curr-wrap"]').text().trim());
+                //});
             }
         });
         request('https://kharkov.obmenka.ua/', function (error, response, body) {
-            if (!error && response && response.statusCode) {
+            if (!error) {// && response && response.statusCode) {
                 $ = cheerio.load(body);
                 $('li[class=" direction"]').slice(0, 3).each(function (i, elem) {
                     $(this).find('span[class="currency"]').text().trim();
@@ -98,14 +108,13 @@ var job = new CronJob({
             }
         });
         request('https://kit-group.in.ua/obmenka/', function (error, response, body) {
-            if (!error && response && response.statusCode) {
+            if (!error) {
                 $ = cheerio.load(body);
                 $('#tablo-kharkov').slice(0, 3).each(function (i, elem) {
                     console.log($(this).html());
                 });
             }
         });
-
     },
     start: false,
     timeZone: 'Europe/Kiev'
