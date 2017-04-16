@@ -64,93 +64,137 @@ io.on('connection', function (socket) {
     });
 });
 
-var ccc = [{
-    url: 'http://www.obmenka.kh.ua/1',
-    logo: '',
+var cArray = [{
+    url: 'http://www.obmenka.kh.ua/',
+    logo: 'http://www.obmenka.kh.ua/img/logo.png',
     USD_UAH: {
-        name: 'USD',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     EUR_UAH: {
-        name: 'EUR',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     RUB_UAH: {
-        name: 'RUB',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     USD_RUB: {
-        name: 'USD-RUB',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     EUR_USD: {
-        name: 'EUR-USD',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     }
 },{
-    url: 'http://www.obmenka.kh.ua/2',
-    logo: '',
+    url: 'https://kharkov.obmenka.ua/',
+    logo: 'https://lh3.googleusercontent.com/QjdODujrvaPeY91_WOE_oKp8gp6IP0A7cSW32x2MGmat5i3neVQB46j5hh_Z__hNlg=w300',
     USD_UAH: {
-        name: 'USD',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     EUR_UAH: {
-        name: 'EUR',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     RUB_UAH: {
-        name: 'RUB',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     USD_RUB: {
-        name: 'USD-RUB',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     },
     EUR_USD: {
-        name: 'EUR-USD',
-        prevbuy: '',
-        prevsell: '',
-        buy: '',
-        sell: '',
-        way: '▼▲'
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
+    }
+},{
+    url: 'https://kit-group.in.ua/obmenka/',
+    logo: 'https://kit-group.in.ua/wp-content/uploads/2016/02/logo.png',
+    USD_UAH: {
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
+    },
+    EUR_UAH: {
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
+    },
+    RUB_UAH: {
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
+    },
+    USD_RUB: {
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
+    },
+    EUR_USD: {
+        prevbuy: 0,
+        prevsell: 0,
+        buy: 0,
+        sell: 0,
+        way: 0,
+        check: false
     }
 }];
+
 var CronJob = require('cron').CronJob;
 var job = new CronJob({
     /*  Seconds: 0-59
@@ -164,42 +208,69 @@ var job = new CronJob({
     cronTime: '*/5 */1 0-23 1-31 0-11 0-6',
     onTick: function () {
         console.log(moment().format());
-        request('http://www.obmenka.kh.ua/', function (error, response, body) {
+        request(cArray[0].url, function (error, response, body) {
             if (!error) {
                 $ = cheerio.load(body);
-                console.log('http://www.obmenka.kh.ua/');
-                ccc['http://www.obmenka.kh.ua/']
-                $('div[class="digits"]').find('div[class="item"]').each(function (i, elem) {
-                    console.log($(this).find('span[class="val"]').text().replace(/\//g, '-').toUpperCase());
-                    console.log($(this).find('span[class="buy"]').text());
-                    console.log($(this).find('span[class="sell"]').text());
-                    //console.log($(this).text().trim().replace(/\ /g, '').replace(/\//g, '-').toUpperCase());
+                $('div[class="digits"]').find('div[class="item"]').slice(0, 5).each(function (i, elem) {
+                    var currname = $(this).find('span[class="val"]').text().replace(/\//g, '_').toUpperCase();
+                    cArray[0][currname].buy = $(this).find('span[class="buy"]').text().trim();
+                    cArray[0][currname].sell = $(this).find('span[class="sell"]').text().trim();
+                    if(cArray[0][currname].buy != cArray[0][currname].prevbuy){
+                        if(cArray[0][currname].buy > cArray[0][currname].prevbuy){
+                            cArray[0][currname].way = '▲'
+                        }else{cArray[0][currname].way = '▼'}
+                        cArray[0][currname].check = true;
+                        cArray[0][currname].prevbuy = cArray[0][currname].buy;
+                        cArray[0][currname].prevsell = cArray[0][currname].sell;
+                    }else{cArray[0][currname].check = false}
                 });
             }
         });
-        /*
-        request('https://kharkov.obmenka.ua/', function (error, response, body) {
+        request(cArray[1].url, function (error, response, body) {
             if (!error) {// && response && response.statusCode) {
                 $ = cheerio.load(body);
-                $('li[class=" direction"]').slice(0, 3).each(function (i, elem) {
-                    $(this).find('span[class="currency"]').text().trim();
-                    $(this).find('span[class="buy"]').text().trim();
-                    $(this).find('span[class="sell"]').text().trim();
-                    console.log($(this).find('span[class="currency"]').text().replace(/\r\n/g, ''));
-                    console.log($(this).find('span[class="buy"]').text().replace(/\r|\n/g, ''));
-                    console.log($(this).find('span[class="sell"]').text().replace(/\r|\n/g, ''));
+                $('ul[class="currency-list"]').find('li[data-rate]').slice(0, 6).each(function (i, elem) {
+                    if (i != 3) {
+                        var currname = $(this).find('span[class="currency"]').text().replace(/\s/ig, '_');
+                        cArray[1][currname].buy = $(this).find('span[class="buy"]').text().trim();
+                        cArray[1][currname].sell = $(this).find('span[class="sell"]').text().trim();
+                        if(cArray[1][currname].buy != cArray[1][currname].prevbuy){
+                            if(cArray[1][currname].buy > cArray[1][currname].prevbuy){
+                                cArray[1][currname].way = '▲';
+                            }else{cArray[1][currname].way = '▼'}
+                            cArray[1][currname].check = true;
+                            cArray[1][currname].prevbuy = cArray[1][currname].buy;
+                            cArray[1][currname].prevsell = cArray[1][currname].sell;
+                        }else{
+                            cArray[1][currname].check = false;
+                        }
+                    }
                 });
             }
+
         });
-        request('https://kit-group.in.ua/obmenka/', function (error, response, body) {
+        request(cArray[2].url, function (error, response, body) {
             if (!error) {
                 $ = cheerio.load(body);
-                $('#tablo-kharkov').slice(0, 3).each(function (i, elem) {
-                    console.log($(this).html());
+                $('#tablo-kharkov').find('div').each(function (i, elem) {
+                    //console.log($(this).find('span[class="val"]').text());
+                    var currname = $(this).find('span[class="currency"]').text().replace(/usd/ig, 'USD_UAH').replace(/eur/ig, 'EUR_UAH').replace(/rur/ig, 'RUB_UAH');
+                    cArray[2][currname].buy = $(this).find('span[class="val"]').text().trim().slice(0,5);
+                    cArray[2][currname].sell = $(this).find('span[class="val last-block"]').text().trim().slice(0,5);
+                    if(cArray[2][currname].buy != cArray[2][currname].prevbuy){
+                        if(cArray[2][currname].buy > cArray[2][currname].prevbuy){
+                            cArray[2][currname].way = '▲';
+                        }else{cArray[2][currname].way = '▼'}
+                        cArray[2][currname].check = true;
+                        cArray[2][currname].prevbuy = cArray[2][currname].buy;
+                        cArray[2][currname].prevsell = cArray[2][currname].sell;
+                    }else{
+                        cArray[2][currname].check = false;
+                    }
                 });
             }
+            console.log(cArray);
         });
-         */
     },
     start: false,
     timeZone: 'Europe/Kiev'
